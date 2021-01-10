@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'category_personal_name' => 'Personal',
-    'category_professional_name' => 'Professional',
+    'personal_category' => 'Personal',
+    'professional_category' => 'Professional',
 
 ];
