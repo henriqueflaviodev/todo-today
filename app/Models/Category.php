@@ -20,12 +20,6 @@ class Category extends Model
     {
         static::saving(function ($user) {
             $user->slug = Str::slug($user->name);
-
-            Validator::make($user->attributes, [
-                'name' => 'required|max:20',
-                'slug' => 'required|max:20',
-            ])->validate();
-
             return $user;
         });
     }
