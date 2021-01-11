@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PrioritySeeder::class,
+            StateSeeder::class,
         ]);
     }
 }
