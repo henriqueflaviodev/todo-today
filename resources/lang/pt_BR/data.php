@@ -13,7 +13,18 @@ return [
     |
     */
 
+    // Categories table default registers
     'personal_category' => 'Pessoal',
     'professional_category' => 'Profissional',
+
+    // Priorities table default registers
+    'low_priority' => 'Baixa',
+    'medium_priority' => 'Média',
+    'high_priority' => 'Alta',
+
+    // States table default registers
+    'pending_state' => 'Pendente',
+    'completed_state' => 'Concluído',
+    'shelved_state' => 'Arquivado',
 
 ];
