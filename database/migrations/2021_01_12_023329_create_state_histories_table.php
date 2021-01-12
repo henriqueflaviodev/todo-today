@@ -18,6 +18,7 @@ class CreateStateHistoriesTable extends Migration
             $table->foreignId('task_id');
             $table->foreignId('state_id');
             $table->date('ended_at')->nullable();
+            $table->string('note', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('task_id')->references('id')->on('tasks');

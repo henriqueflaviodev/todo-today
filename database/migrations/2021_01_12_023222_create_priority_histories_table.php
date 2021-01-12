@@ -18,6 +18,7 @@ class CreatePriorityHistoriesTable extends Migration
             $table->foreignId('task_id');
             $table->foreignId('priority_id');
             $table->date('ended_at')->nullable();
+            $table->string('note', 100)->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('task_id')->references('id')->on('tasks');
