@@ -60,24 +60,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * Relashionships
-     */
-
-    /**
-     * User categories
-     *
-     * @return HasMany
+     * Relationships
      */
     public function categories()
     {
         return $this->hasMany(Category::class);
     }
 
-    /**
-     * User tasks
-     *
-     * @return HasManyThrough
-     */
     public function tasks()
     {
         return $this->hasManyThrough(Task::class, Category::class);
