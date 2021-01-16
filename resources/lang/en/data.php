@@ -14,17 +14,28 @@ return [
     */
 
     // Categories table default registers
-    'personal_category' => 'Personal',
-    'professional_category' => 'Professional',
+    'category' => [
+        'personal' => 'Personal',
+        'professional' => 'Professional',
+    ],
 
     // Priorities table default registers
-    'low_priority' => 'Low',
-    'medium_priority' => 'Medium',
-    'high_priority' => 'High',
+    'priority' => [
+        'low' => 'Low',
+        'medium' => 'Medium',
+        'high' => 'High'
+    ],
 
     // States table default registers
-    'pending_state' => 'Pending',
-    'completed_state' => 'Completed',
-    'shelved_state' => 'Shelved',
+    'state' => [
+        'pending' => 'Pending',
+        'completed' => 'Completed',
+        'shelved' => 'Shelved',
+    ],
+
+    // Defaults
+    'default' => [
+        'task-name' => 'A :category :state :priority priority level Task'
+    ],
 
 ];

@@ -54,12 +54,12 @@ class CreateNewUser implements CreatesNewUsers
     private function createDefaultCategoriesToUser(int $userId): void
     {
         $category1 = new Category();
-        $category1->name = __('data.personal_category');
+        $category1->name = __('data.category.personal');
         $category1->user_id = $userId;
         $category1->save();
 
         $category2 = new Category();
-        $category2->name = __('data.professional_category');
+        $category2->name = __('data.category.professional');
         $category2->user_id = $userId;
         $category2->save();
     }

@@ -14,17 +14,28 @@ return [
     */
 
     // Categories table default registers
-    'personal_category' => 'Pessoal',
-    'professional_category' => 'Profissional',
+    'category' => [
+        'personal' => 'Pessoal',
+        'professional' => 'Profissional',
+    ],
 
     // Priorities table default registers
-    'low_priority' => 'Baixa',
-    'medium_priority' => 'Média',
-    'high_priority' => 'Alta',
+    'priority' => [
+        'low' => 'Baixa',
+        'medium' => 'Média',
+        'high' => 'Alta'
+    ],
 
     // States table default registers
-    'pending_state' => 'Pendente',
-    'completed_state' => 'Concluído',
-    'shelved_state' => 'Arquivado',
+    'state' => [
+        'pending' => 'Pendente',
+        'completed' => 'Concluído',
+        'shelved' => 'Arquivado',
+    ],
+
+    // Defaults
+    'default' => [
+        'task-name' => 'Uma tafera :category :state de :priority prioridade'
+    ],
 
 ];

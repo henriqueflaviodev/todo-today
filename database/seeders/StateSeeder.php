@@ -14,13 +14,13 @@ class StateSeeder extends Seeder
      */
     public function run()
     {
-        $pending = new State([ 'name' => __('data.pending_state') ]);
+        $pending = new State([ 'name' => __('data.state.pending') ]);
         $pending->save();
 
-        $completed = new State([ 'name' => __('data.completed_state') ]);
+        $completed = new State([ 'name' => __('data.state.completed') ]);
         $completed->save();
 
-        $shelved = new State([ 'name' => __('data.shelved_state') ]);
+        $shelved = new State([ 'name' => __('data.state.shelved') ]);
         $shelved->save();
     }
 }
