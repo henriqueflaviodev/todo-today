@@ -44,7 +44,7 @@ class Task extends Model
     }
 
     /**
-     * Get tasks by state (mandatory) and/or category, and return all needed data to build a tasks list
+     * Get tasks by state and/or category, and return all needed data to build a tasks list
      *
      * @param string $stateSlug
      * @param string $categorySlug

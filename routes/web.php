@@ -29,4 +29,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::resource('tasks', TaskController::class);
+$tasks = __('routes.tasks');
+Route::get("/$tasks/{state_slug}/{category_slug?}", [TaskController::class, 'index'])
+    ->name('tasks.index')
+    ->where([ 'state_slug' => '[a-z]+', 'category_slug' => '[a-z]*' ]);
+Route::resource($tasks, TaskController::class)->except('index');

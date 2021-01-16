@@ -19,9 +19,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(string $stateSlug, string $categorySlug = '')
     {
-        return response()->json($this->task->findByStateAndCategorySlug('pendente'));
+        return response()->json($this->task->findByStateAndCategorySlug($stateSlug, $categorySlug));
     }
 
     /**
