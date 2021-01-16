@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
@@ -14,7 +13,6 @@ class Task extends Model
     /**
      * Relationships
      */
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -46,47 +44,30 @@ class Task extends Model
     }
 
     /**
-     * get tasks by state (mandatory) and/or category, and return all needed data to build a tasks list
+     * Get tasks by state (mandatory) and/or category, and return all needed data to build a tasks list
+     *
      * @param string $stateSlug
      * @param string $categorySlug
+     * @return Illuminate\Support\Collection;
+     * @throws Exception
      */
     public function findByStateAndCategorySlug(string $stateSlug, string $categorySlug = '')
     {
-        /*
-        return DB::table('tasks')
-            ->join('priorities', 'tasks.current_priority_id', '=', 'priorities.id')
-            ->join('states', function($join) use ($stateSlug) {
-                $join->on('tasks.current_state_id', '=', 'states.id')
-                    ->where('states.slug', '=', $stateSlug);
-            })
-            ->join('categories', function($join) use ($categorySlug) {
-                $join->on('tasks.category_id', '=', 'categories.id')
-                    ->where('categories.user_id', '=', Auth::id())
-                    ->when($categorySlug, function($join, $categorySlug) {
-                        return $join->where('categories.slug', '=', $categorySlug);
-                    });
-            })
-            ->select('tasks.*', 'states.name as state_name', 'priorities.name as priority_name')
-            ->get();
-        */
-
         return $this->with([
                 'currentPriority',
                 'currentState',
                 'category',
             ])
-            ->join('priorities', 'tasks.current_priority_id', '=', 'priorities.id')
-            ->join('states', function($join) use ($stateSlug) {
-                $join->on('tasks.current_state_id', '=', 'states.id')
-                    ->where('states.slug', '=', $stateSlug);
-            })
-            ->join('categories', function($join) use ($categorySlug) {
-                $join->on('tasks.category_id', '=', 'categories.id')
-                    ->where('categories.user_id', '=', 1)
-                    ->when($categorySlug, function($join, $categorySlug) {
-                        return $join->where('categories.slug', '=', $categorySlug);
-                    });
-            })
+            ->join('priorities', 'tasks.current_priority_id', 'priorities.id')
+            ->join(
+                'states',
+                fn ($join) => $join->on('tasks.current_state_id', 'states.id')->where('states.slug', $stateSlug)
+            )
+            ->join(
+                'categories',
+                fn ($join) => $join->on('tasks.category_id', 'categories.id')->where('categories.user_id', 1)
+                    ->when($categorySlug, fn ($join, $categorySlug) => $join->where('categories.slug', $categorySlug))
+            )
             ->orderBy('priorities.level')
             ->get();
 
