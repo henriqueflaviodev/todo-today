@@ -14,13 +14,22 @@ class PrioritySeeder extends Seeder
      */
     public function run()
     {
-        $low = new Priority( [ 'name' => __('data.low_priority') ] );
+        $low = new Priority([
+            'name' => __('data.low_priority'),
+            'level' => 9,
+        ]);
         $low->save();
 
-        $medium = new Priority([ 'name' => __('data.medium_priority') ]);
+        $medium = new Priority([
+            'name' => __('data.medium_priority'),
+            'level' => 5,
+        ]);
         $medium->save();
 
-        $high = new Priority([ 'name' => __('data.high_priority') ]);
+        $high = new Priority([
+            'name' => __('data.high_priority'),
+            'level' => 1,
+        ]);
         $high->save();
     }
 }

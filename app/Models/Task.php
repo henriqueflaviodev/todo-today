@@ -82,11 +82,12 @@ class Task extends Model
             })
             ->join('categories', function($join) use ($categorySlug) {
                 $join->on('tasks.category_id', '=', 'categories.id')
-                    ->where('categories.user_id', '=', Auth::id())
+                    ->where('categories.user_id', '=', 1)
                     ->when($categorySlug, function($join, $categorySlug) {
                         return $join->where('categories.slug', '=', $categorySlug);
                     });
             })
+            ->orderBy('priorities.level')
             ->get();
 
     }
