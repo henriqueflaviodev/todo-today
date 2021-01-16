@@ -61,12 +61,18 @@ class Task extends Model
             ->join('priorities', 'tasks.current_priority_id', 'priorities.id')
             ->join(
                 'states',
-                fn ($join) => $join->on('tasks.current_state_id', 'states.id')->where('states.slug', $stateSlug)
+                fn ($join) =>
+                    $join->on('tasks.current_state_id', 'states.id')
+                        ->where('states.slug', $stateSlug)
             )
             ->join(
                 'categories',
-                fn ($join) => $join->on('tasks.category_id', 'categories.id')->where('categories.user_id', 1)
-                    ->when($categorySlug, fn ($join, $categorySlug) => $join->where('categories.slug', $categorySlug))
+                fn ($join) =>
+                    $join->on('tasks.category_id', 'categories.id')
+                        ->where('categories.user_id', 1)
+                        ->when($categorySlug,
+                            fn ($join, $categorySlug) =>
+                                $join->where('categories.slug', $categorySlug))
             )
             ->orderBy('priorities.level')
             ->get();
