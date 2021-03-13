@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * Relationships
@@ -69,7 +70,7 @@ class Task extends Model
                 'categories',
                 fn ($join) =>
                     $join->on('tasks.category_id', 'categories.id')
-                        ->where('categories.user_id', 1)
+                        ->where('categories.user_id', Auth::id())
                         ->when($categorySlug,
                             fn ($join, $categorySlug) =>
                                 $join->where('categories.slug', $categorySlug))
