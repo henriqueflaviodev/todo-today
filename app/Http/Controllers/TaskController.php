@@ -21,7 +21,8 @@ class TaskController extends Controller
      */
     public function index(string $stateSlug, string $categorySlug = '')
     {
-        return response()->json($this->task->findByStateAndCategorySlug($stateSlug, $categorySlug));
+        return response()
+            ->json($this->task->findByStateAndCategorySlug($stateSlug, $categorySlug));
     }
 
     /**
